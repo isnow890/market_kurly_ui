@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
             CustomActions(),
           ],
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(45),
+            preferredSize: Size.fromHeight(40),
             child: Container(
               decoration: BoxDecoration(
                 border: Border(
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 tabs: categories
                     .map((e) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child: Text(e),
+                          child: Text(e,style: TextStyle(fontSize: 13)),
                         ))
                     .toList(),
                 labelColor: kPrimaryColor,
