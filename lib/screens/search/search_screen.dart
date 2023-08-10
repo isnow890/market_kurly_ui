@@ -1,10 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:impl/constraints.dart';
+import 'package:impl/screens/components/custom_actions.dart';
+import 'package:impl/screens/search/components/default_search_field.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+  final List searchKeyword = ['불고기', '닭갈비', '삼겹살', '갈비곰탕', '생새우살'];
+
+  SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('검색'),
+        actions: [CustomActions()],
+        automaticallyImplyLeading: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            DefaultSearchField(),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              '인기 검색어',
+              style: TextStyle(color: kTextColor),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              height: 400,
+              child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return Container(
+                      child: SizedBox(
+                        height: 50,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            searchKeyword[index],
+                            style:
+                                TextStyle(color: kPrimaryColor, fontSize: 16),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      thickness: 0.5,
+                      height: 0,
+                    );
+                  },
+                  itemCount: searchKeyword.length),
+
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
